@@ -1,7 +1,9 @@
 package com.electronic.commerce.product;
 
 import com.electronic.commerce.product.infraestructure.dto.PriceDTO;
+import com.electronic.commerce.product.infraestructure.exceptions.ExceptionErrorHandler;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -22,6 +25,9 @@ class ProductApplicationTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @InjectMocks
+    private ExceptionErrorHandler exceptionHandlerController;
 
     @Test
     void testGetPrice10Day14() {
@@ -166,5 +172,16 @@ class ProductApplicationTests {
 
         // Verificar el resultado
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    void testInternalServerExceptionHandler() {
+        Exception exception = new Exception("Unexpected error");
+        ResponseEntity<Map<String, Object>> responseEntity = exceptionHandlerController.internalServerException(exception);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+
+        Map<String, Object> response = responseEntity.getBody();
+        assertEquals("UPS! Unexpected error, contact system administrator", response.get("Message"));
     }
 }

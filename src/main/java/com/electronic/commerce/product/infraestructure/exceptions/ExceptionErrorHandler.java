@@ -29,4 +29,12 @@ public class ExceptionErrorHandler {
         log.error("Not found: ".concat(e.getMessage()));
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
+    @ExceptionHandler({Exception.class})
+    public ResponseEntity<Map<String, Object>> internalServerException(Exception e) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("Message", "UPS! Unexpected error, contact system administrator");
+        log.error("Unexpected error: ".concat(e.getMessage()));
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
 }
