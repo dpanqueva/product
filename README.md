@@ -50,7 +50,7 @@ Para la ejecución, en mi caso utilizare [Postman](https://www.postman.com/downl
 
 > Tener en cuenta el ambiente al cual se le va a realizar la prueba
 > localhost: maquina de desarrollo
-> http://localhost:8087/api/v1/search
+> http://localhost:8080/prices?applicationDate=2020-06-1621:00:00&productId=35455&brandId=1
 
 
 |Número| Operacion | Endpoint heroku|Endpoint local|
