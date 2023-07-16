@@ -74,10 +74,4 @@ Para la solución de este reto, se implemento:
 | Spring Boot | [https://start.spring.io/](https://start.spring.io/) |
 | Junit5 | [Junit](https://junit.org/junit5/) |
 
-
-## Pruebas unitarias
-Se realiza test unitarios al controller, partiendo en la información inicial de la prueba
-
-[![N|Solid](https://github.com/dpanqueva/commerce-test-dev/blob/master/documentacion/wiki/arquitectura/test.PNG)]()
-
 ## Gracias!!
