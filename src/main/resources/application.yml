@@ -18,3 +18,11 @@ spring:
         format_sql: true
   application:
     name: product
+
+springdoc:
+  api-docs:
+    path: /swagger-doc/v3/api-docs
+    groups:
+      enable: true
+  swagger-ui:
+    path: /swagger-ui-custom.html

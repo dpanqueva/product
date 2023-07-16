@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class ExceptionErrorHandler {
 
     @ExceptionHandler({MethodArgumentTypeMismatchException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Map<String, Object>> badRequest(MethodArgumentTypeMismatchException e) {
         Map<String, Object> response = new HashMap<>();
         response.put("Message", "UPS! Bad request, date must have the format yyyy-mm-ddHH:mm:ss. Example: 2020-06-1410:10:00");
@@ -23,6 +25,7 @@ public class ExceptionErrorHandler {
     }
 
     @ExceptionHandler({NotFoundException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<Map<String, Object>> notFound(NotFoundException e) {
         Map<String, Object> response = new HashMap<>();
         response.put("Message", e.getMessage());
@@ -31,6 +34,7 @@ public class ExceptionErrorHandler {
     }
 
     @ExceptionHandler({Exception.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String, Object>> internalServerException(Exception e) {
         Map<String, Object> response = new HashMap<>();
         response.put("Message", "UPS! Unexpected error, contact system administrator");
