@@ -61,7 +61,7 @@ Para la ejecución, en mi caso utilizare [Postman](https://www.postman.com/downl
 ## Explicación servicio 
 Este servicio lo que pretende es consultar información de un producto con el precio, tarifa y fecha de aplicación a partir de una fecha de aplicación, producto y una marca.
 
-Para ver la documentación del servicio [aquí](https://github.com/dpanqueva/commerce-test-dev/wiki)
+Para ver la documentación del servicio [aquí](https://github.com/dpanqueva/product/wiki)
 
 ## Tech
 Para la solución de este reto, se implemento:
